@@ -1,0 +1,7 @@
+{
+  "name": "badmintonTracker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

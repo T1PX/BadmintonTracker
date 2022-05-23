@@ -13,5 +13,34 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-fab vertical="bottom" horizontal="center" style="margin-bottom: 15%;">
+    <ion-fab-button id="modal-trigger">
+      <ion-icon name="add">
+        <ion-modal trigger="modal-trigger" [isOpen]="true"
+        [swipeToClose]="true"
+        [presentingElement]="routerOutlet.nativeEl">
+          <ng-template>
+            <ion-content style="display: flex; align-content: center;">
+              <form action="addPlayer" method="post">
+                <ion-item>
+                  <ion-label position="floating">Name</ion-label>
+                  <ion-input name="name"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Category</ion-label>
+                  <ion-input name="category"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="">Photo</ion-label>
+                  <ion-input name="photo" type="file"></ion-input>
+                </ion-item>
+              </form>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   
 </ion-content>

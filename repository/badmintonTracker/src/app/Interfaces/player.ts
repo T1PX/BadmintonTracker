@@ -3,7 +3,8 @@ export class Player {
     constructor(){}
     name: '';
     score: 0;
-    stats: Stats;
+    category?:string;
+    stats?: Stats;
     statsAgainst?: Stats;
     totalStats: Stats;
     totalStatsAgainst?: Stats;
@@ -20,6 +21,12 @@ export class Player {
     }
     setScore(newScore){
         this.score=newScore;
+    }
+    getCategory(){
+        return this.category;
+    }
+    setCategory(newCategory){
+        this.category=newCategory;
     }
     getStats(){
         return this.stats;

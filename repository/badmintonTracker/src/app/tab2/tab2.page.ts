@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActionSheetController, IonRouterOutlet } from '@ionic/angular';
+import { Player } from '../Interfaces/player';
 
 @Component({
   selector: 'app-tab2',
@@ -9,6 +10,10 @@ import { ActionSheetController, IonRouterOutlet } from '@ionic/angular';
 export class Tab2Page {
 
   constructor(public routerOutlet: IonRouterOutlet, private actionSheetCtrl: ActionSheetController) {}
+
+  ngOnInit(){
+    //Traer lista de jugadores
+  }
 
   async canDismiss() {
     const actionSheet = await this.actionSheetCtrl.create({
@@ -35,4 +40,22 @@ export class Tab2Page {
 
     return false;
   }
+
+  uploadPlayer = new Player();
+
+  onFileChange(ev){
+    this.uploadPlayer.setPhoto(ev.target.files[0]);
+  }
+  onNameChange(ev){
+    this.uploadPlayer.setName(ev.target.value);
+  }
+  onCategoryChange(ev){
+    this.uploadPlayer.setCategory(ev.target.value);
+  }
+  submitForm(){
+    //POST uploadPlayer
+    console.log(this.uploadPlayer);
+    //refresh
+  }
+
 }

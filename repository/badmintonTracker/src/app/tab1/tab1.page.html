@@ -13,46 +13,46 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card style=" height: 35%; margin-inline: 5%;">
+  <ion-card style=" height: 30%; margin-inline: 5%;">
 
     <div style="height: 75%; display: flex; align-items: center; justify-content: center;">
-      <div *ngIf="player1.getPhoto(); else defaultAvatar">
-        <img [src]= player1.getPhoto() alt=""></div>
+      <div *ngIf="player1.photo; else defaultAvatar">
+        <img [src]= player1.photo alt=""></div>
       <ng-template #defaultAvatar>
         <img src= "../../assets/avatar.png" alt=""></ng-template>
-      <h1 style="margin-left: 10px;">{{player1.getName()}}</h1> 
+      <h1 style="margin-left: 10px;">{{player1.name}}</h1> 
     </div>
 
     <div style="display: block; align-items: center; justify-content: center;">
-      <ion-button (click)="point(1)" color="primary" expand="block">Point</ion-button>
+      <ion-button id="modal-trigger1" (click)="point(1)" color="primary" expand="block">Point</ion-button>
     </div>
 
   </ion-card>
 
   <ion-card style=" height: 20%;  margin-inline: 5%;">
     <div style="display: flex; align-items: center; justify-content: center;">
-      <h1>{{player1.getScore()}} - {{player2.getScore()}}</h1>
+      <h1>{{player1.score}} - {{player2.score}}</h1>
     </div>
     <div style="display: flex; align-items: center; justify-content: center;">
-      <h4 *ngIf="!(player1Sets+player2Sets==0)">{{set1Score}}</h4>
-      <h4 *ngIf="!(player1Sets+player2Sets==1)">{{set2Score}}</h4>
-      <h4 *ngIf="!(player1Sets+player2Sets==2)">{{set3Score}}</h4>
+      <h4 *ngIf="!(player1.sets+player2.sets==0)">{{set1Score}}</h4>
+      <h4 *ngIf="!(player1.sets+player2.sets==1)">{{set2Score}}</h4>
+      <h4 *ngIf="!(player1.sets+player2.sets==2)">{{set3Score}}</h4>
     </div>
 
   </ion-card>
 
-  <ion-card style=" height: 35%; margin-inline: 5%;">
+  <ion-card style=" height: 30%; margin-inline: 5%;">
     
     <div style="height: 75%; display: flex; align-items: center; justify-content: center;">
-      <div *ngIf="player2.getPhoto(); else defaultAvatar">
-        <img [src]= player2.getPhoto() alt=""></div>
+      <div *ngIf="player2.photo; else defaultAvatar">
+        <img [src]= player2.photo alt=""></div>
       <ng-template #defaultAvatar>
         <img src= "../../assets/avatar.png" alt=""></ng-template>
-      <h1 style="margin-left: 10px;">{{player2.getName()}}</h1> 
+      <h1 style="margin-left: 10px;">{{player2.name}}</h1> 
     </div>
 
     <div style="display: block; align-items: center; justify-content: center;">
-      <ion-button (click)="point(2)" color="primary" expand="block">Point</ion-button>
+      <ion-button id="modal-trigger2" (click)="point(2)" color="primary" expand="block">Point</ion-button>
     </div>
 
   </ion-card>

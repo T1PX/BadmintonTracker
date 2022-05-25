@@ -16,49 +16,27 @@
   <ion-fab vertical="bottom" horizontal="center" style="margin-bottom: 15%;">
     <ion-fab-button id="modal-trigger">
       <ion-icon name="add">
-        <ion-modal trigger="modal-trigger" [isOpen]="true"
-        [swipeToClose]="true"
-        [presentingElement]="routerOutlet.nativeEl">
-          <ng-template>
-            <ion-content style="display: flex; align-content: center;">
-              <form action="addPlayer" method="post">
-                <ion-item>
-                  <ion-label position="floating" required="true">Name</ion-label>
-                  <ion-input name="name" (change)="onNameChange($event)"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating" required="true">Category</ion-label>
-                  <ion-input name="category" (change)="onCategoryChange($event)"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="">Photo</ion-label>
-                  <ion-input name="photo" type="file" (change)="onFileChange($event)"></ion-input>
-                </ion-item>
-              </form>
-              <ion-button (click)="submitForm()">Add Player</ion-button>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
+        <!-- MODAL -->
       </ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-list>
-    <!-- ngFor -->
+  <!-- <ion-list>
+    ngFor
     <ion-item>
       <ion-avatar>
-        <div *ngIf="player.getPhoto(); else defaultAvatar">
-          <img [src]= player.getPhoto()></div>
+        <div *ngIf="player.photo; else defaultAvatar">
+          <img [src]= player.photo></div>
         <ng-template #defaultAvatar>
           <img src= "../../assets/avatar.png" alt=""></ng-template>
       </ion-avatar>
       <ion-label>
-        <h2>{{player.getPhoto()}}</h2>
-        <h3>{{player.getCategory()}}</h3>
+        <h2>{{player.photo}}</h2>
+        <h3>{{player.category}}</h3>
       </ion-label>
     </ion-item>
 
-  </ion-list>
+  </ion-list> -->
 
   
 </ion-content>

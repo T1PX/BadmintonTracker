@@ -3,7 +3,10 @@
     <ion-title> Badminton Tracker </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="auth-form">
+<ion-content>
+  <ion-img src="../../assets/icon/index.png"></ion-img>
+</ion-content>
+<ion-footer class="auth-form">
   <ion-grid>
     <ion-row>
       <ion-col class="ion-align-self-center">
@@ -11,14 +14,13 @@
           [routerLink]="['/signup']"
           expand="block"
           color="primary"
-          >Register</ion-button
+          >Sign Up</ion-button
         >
-        <span class="divider line one-line">or</span>
-        <span class="already">Already a user?</span>
+        <h1>Already a user?</h1>
         <ion-button [routerLink]="['/login']" expand="block" color="danger"
-          >Sign In</ion-button
+          >Log In</ion-button
         >
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+</ion-footer>

@@ -15,22 +15,14 @@
     <ion-label position="floating">Password</ion-label>
     <ion-input type="password" #password required></ion-input>
   </ion-item>
+</ion-content>
+
+<ion-footer>
   <ion-row>
     <ion-col>
       <ion-button type="submit" (click)="logIn(email, password)" expand="block"
         >Login</ion-button
       >
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <ion-button
-        expand="block"
-        color="warning"
-        [routerLink]="['/password-reset']"
-      >
-        Reset Password
-      </ion-button>
     </ion-col>
   </ion-row>
   <ion-row>
@@ -46,4 +38,15 @@
       </ion-button>
     </ion-col>
   </ion-row>
-</ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-button
+        expand="block"
+        color="warning"
+        [routerLink]="['/password-reset']"
+      >
+        Forgot password?
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

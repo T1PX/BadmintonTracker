@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActionSheetController, IonRouterOutlet } from '@ionic/angular';
 import { Player } from '../Interfaces/player';
 
 @Component({
@@ -9,48 +8,22 @@ import { Player } from '../Interfaces/player';
 })
 export class Tab2Page {
 
-  constructor(public routerOutlet: IonRouterOutlet, private actionSheetCtrl: ActionSheetController) {}
+  constructor() {}
 
   ngOnInit(){
     //Traer lista de jugadores
   }
 
-  async canDismiss() {
-    const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Are you sure you want to discard your changes?',
-      buttons: [
-        {
-          text: 'Discard Changes',
-          role: 'destructive'
-        },
-        {
-          text: 'Keep Editing',
-          role: 'cancel'
-        }
-      ]
-    });
-    
-    await actionSheet.present();
-
-    const { role } = await actionSheet.onDidDismiss();
-    
-    if (role === 'destructive') {
-      return true;
-    }
-
-    return false;
-  }
-
-  uploadPlayer = new Player();
+  uploadPlayer:Player;
 
   onFileChange(ev){
-    this.uploadPlayer.setPhoto(ev.target.files[0]);
+    this.uploadPlayer.photo=(ev.target.files[0]);
   }
   onNameChange(ev){
-    this.uploadPlayer.setName(ev.target.value);
+    this.uploadPlayer.name=(ev.target.value);
   }
   onCategoryChange(ev){
-    this.uploadPlayer.setCategory(ev.target.value);
+    this.uploadPlayer.category=(ev.target.value);
   }
   submitForm(){
     //POST uploadPlayer

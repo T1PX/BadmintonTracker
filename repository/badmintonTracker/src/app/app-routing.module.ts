@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'password-reset',
     loadChildren: () => import('./password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
+  },
+  {
+    path: 'modal-punto',
+    loadChildren: () => import('./modal-punto/modal-punto.module').then( m => m.ModalPuntoPageModule)
   }
 
 ];

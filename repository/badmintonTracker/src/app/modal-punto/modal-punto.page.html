@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select rally end</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-button (click)="close('oppNonForcedError')">Opponent Non Forced Error</ion-button>
+  <ion-button (click)="close('smash')">Smash</ion-button>
+  <ion-button (click)="close('netPlay')">Net Play</ion-button>
+  <ion-button (click)="close('drop')">Drop</ion-button>
+  <ion-button (click)="close('feint')">Feint</ion-button>
+  <ion-button (click)="close('longCourt')">Long Court</ion-button>
+
+  <ion-fab vertical="bottom" horizontal="center">
+    <ion-fab-button (click)="close('close')">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

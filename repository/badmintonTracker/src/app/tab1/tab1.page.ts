@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Match } from '../Interfaces/match';
 import { InMatchPlayer, Player } from '../Interfaces/player';
-
+import { ModalController } from '@ionic/angular'; 
+import { ModalPuntoPage } from '../modal-punto/modal-punto.page';
+import { Stats } from '../Interfaces/stats';
 
 @Component({
   selector: 'app-tab1',
@@ -11,10 +13,31 @@ import { InMatchPlayer, Player } from '../Interfaces/player';
 export class Tab1Page {
   
 
-  constructor() {}
+  constructor(private modalCtrl: ModalController) {}
+
+  async showmodal(pl){
+    const modal = this.modalCtrl.create({
+      component: ModalPuntoPage
+    });
+    (await modal).present();
+    (await modal).onDidDismiss().then((res) =>
+     {
+      if(res.data!='close' && pl==1){
+        this.player1.score=(this.player1.score+1);
+        this.addStat(this.match,res.data);
+      }
+      else if(res.data!='close' && pl==2){
+        this.player2.score=(this.player2.score+1);
+        this.addStatAgainst(this.match,res.data);
+      }
+    });
+  }
+  
   player1:InMatchPlayer = {'score':null,'sets':null,'name':null,'category':null};
   player2:InMatchPlayer = {'score':null,'sets':null,'name':null,'category':null};
-  match:Match = {'player':null,'fecha':null,'result':null,'rival':null,'stats':null,'statsAgainst':null,'winner':null};
+  stats:Stats = new Stats(0,0,0,0,0,0);
+  statsAgainst:Stats = new Stats(0,0,0,0,0,0);
+  match:Match = {'player':null,'fecha':null,'result':null,'rival':null,'stats':this.stats,'statsAgainst':this.statsAgainst,'winner':null};
   date = new Date().toISOString();
   set1Score:string;
   set2Score:string;
@@ -29,15 +52,9 @@ export class Tab1Page {
     this.match.player=this.player1;
     this.match.rival=this.player2.name;
   }
+
   point(pl){
-    if(pl==1){
-      //display modal punto
-      this.player1.score=(this.player1.score+7);
-    }
-    else{
-      //display modal punto
-      this.player2.score=(this.player2.score+7);
-    }
+    this.showmodal(pl);
     if((this.player1.score>=21 && (this.player1.score-this.player2.score)>2)
     ||  (this.player2.score>=21 && (this.player2.score-this.player1.score)>2)
     || (this.player1.score>29 || this.player2.score>29))
@@ -83,7 +100,63 @@ export class Tab1Page {
     this.player1.matches.push(this.match);
     //modal match end
   }
+
+  addStat(match:Match,result:string) {
+    switch(result){
+      case 'oppNonForcedError':{
+          match.stats.oppNonForcedError++
+        break;
+      }
+      case 'smash':{
+        match.stats.smash++
+        break;
+      }
+      case 'netPlay':{
+        match.stats.netPlay++
+        break;
+      }
+      case 'drop':{
+        match.stats.drop++
+        break;
+      }
+      case 'feint':{
+        match.stats.feint++
+        break;
+      }
+      case 'longCourt':{
+        match.stats.longCourt++
+        break;
+      }
+    }
+  }
+
+  addStatAgainst(match:Match,result:string) {
+    switch(result){
+      case 'oppNonForcedError':{
+          match.statsAgainst.oppNonForcedError++
+        break;
+      }
+      case 'smash':{
+        match.statsAgainst.smash++
+        break;
+      }
+      case 'netPlay':{
+        match.statsAgainst.netPlay++
+        break;
+      }
+      case 'drop':{
+        match.statsAgainst.drop++
+        break;
+      }
+      case 'feint':{
+        match.statsAgainst.feint++
+        break;
+      }
+      case 'longCourt':{
+        match.statsAgainst.longCourt++
+        break;
+      }
+    }
+  }
 }
-
-
 

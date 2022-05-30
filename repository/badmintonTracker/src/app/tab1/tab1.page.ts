@@ -44,6 +44,7 @@ export class Tab1Page {
   set3Score:string;
 
   ngOnInit(){
+    //MODAL SELECCION JUGADORES
     this.player1.name = "player 1";
     this.player2.name = "player 2";
     this.player1.score=0;
@@ -98,7 +99,7 @@ export class Tab1Page {
     else {this.match.result= this.set1Score+' '+this.set2Score}
     this.match.fecha= this.date;
     this.player1.matches.push(this.match);
-    //modal match end
+    //MODAL RESUMEN DE PARTIDO
   }
 
   addStat(match:Match,result:string) {

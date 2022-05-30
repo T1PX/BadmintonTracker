@@ -7,36 +7,29 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">MY PLAYERS</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <ion-fab vertical="bottom" horizontal="center" style="margin-bottom: 15%;">
-    <ion-fab-button id="modal-trigger">
+    <ion-fab-button (click)="addPlayer()">
       <ion-icon name="add">
-        <!-- MODAL -->
       </ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <!-- <ion-list>
-    ngFor
+  <ion-list *ngFor="let player of players; index as i">
     <ion-item>
-      <ion-avatar>
+      <ion-avatar style="margin-right: 10px;">
         <div *ngIf="player.photo; else defaultAvatar">
-          <img [src]= player.photo></div>
+          <ion-img src= 'data:image/jpeg;base64,{{player.photo}}'></ion-img></div>
         <ng-template #defaultAvatar>
           <img src= "../../assets/avatar.png" alt=""></ng-template>
       </ion-avatar>
       <ion-label>
-        <h2>{{player.photo}}</h2>
+        <h2>{{player.name}}</h2>
         <h3>{{player.category}}</h3>
       </ion-label>
     </ion-item>
 
-  </ion-list> -->
+  </ion-list>
 
   
 </ion-content>

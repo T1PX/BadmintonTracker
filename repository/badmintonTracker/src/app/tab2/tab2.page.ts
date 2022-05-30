@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { ModalController } from '@ionic/angular';
 import { Player } from '../Interfaces/player';
+import { ModalAddPlayerPage } from '../modal-add-player/modal-add-player.page';
 
 @Component({
   selector: 'app-tab2',
@@ -7,28 +10,29 @@ import { Player } from '../Interfaces/player';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  db:AngularFirestoreCollection<Player>;
+  players:Array<Player>;
 
-  constructor() {}
+  constructor(private modalCtrl: ModalController, private afs:AngularFirestore) {
+    this.db = this.afs.collection<Player>('players');
+  }
 
   ngOnInit(){
-    //Traer lista de jugadores
+    this.getPlayers().then(res => res.forEach((element)=> this.players=element));
   }
 
-  uploadPlayer:Player;
+async getPlayers(){
+  return this.db.valueChanges();
+}
 
-  onFileChange(ev){
-    this.uploadPlayer.photo=(ev.target.files[0]);
-  }
-  onNameChange(ev){
-    this.uploadPlayer.name=(ev.target.value);
-  }
-  onCategoryChange(ev){
-    this.uploadPlayer.category=(ev.target.value);
-  }
-  submitForm(){
-    //POST uploadPlayer
-    console.log(this.uploadPlayer);
-    //refresh
+  async addPlayer(){
+    const modal = this.modalCtrl.create({
+      component: ModalAddPlayerPage
+    });
+    (await modal).present();
+    (await modal).onDidDismiss().then(async (res) => 
+    await this.db.add(res.data));
+    
   }
 
 }

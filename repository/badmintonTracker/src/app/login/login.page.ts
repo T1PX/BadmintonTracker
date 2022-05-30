@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { AuthenticationService } from "../shared/authentication-service";
 @Component({
   selector: 'app-login',
@@ -7,6 +8,7 @@ import { AuthenticationService } from "../shared/authentication-service";
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  userId:string;
   constructor(
     public authService: AuthenticationService,
     public router: Router
@@ -16,6 +18,10 @@ export class LoginPage implements OnInit {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
         if(this.authService.isEmailVerified) {
+          const auth = getAuth();
+          onAuthStateChanged(auth, (user) => {
+            this.userId = user.uid;
+          });
           this.router.navigate(['tabs']);          
         }
         else {

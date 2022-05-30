@@ -1,6 +1,7 @@
 import { Match } from './match';
 import{ Stats } from './stats';
 export interface Player {
+    user?:string;
     name: string;
     category:string;
     photo?: string;

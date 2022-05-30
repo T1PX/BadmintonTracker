@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { ModalController } from '@ionic/angular';
 import { Player } from '../Interfaces/player';
 import { ModalAddPlayerPage } from '../modal-add-player/modal-add-player.page';
+import { AuthenticationService } from '../shared/authentication-service';
 
 @Component({
   selector: 'app-tab2',
@@ -12,13 +13,16 @@ import { ModalAddPlayerPage } from '../modal-add-player/modal-add-player.page';
 export class Tab2Page {
   db:AngularFirestoreCollection<Player>;
   players:Array<Player>;
+  uid:string='';
 
-  constructor(private modalCtrl: ModalController, private afs:AngularFirestore) {
-    this.db = this.afs.collection<Player>('players');
+  constructor(private modalCtrl: ModalController, private afs:AngularFirestore, private authService: AuthenticationService) {
+    
   }
 
   ngOnInit(){
-    this.getPlayers().then(res => res.forEach((element)=> this.players=element));
+    this.players = [];
+    this.db = this.afs.collection<Player>('players', ref => ref.where('user','==',this.authService.userData.uid));
+    this.getPlayers().then(res => res.subscribe(listP=> this.players = listP));
   }
 
 async getPlayers(){
@@ -32,7 +36,6 @@ async getPlayers(){
     (await modal).present();
     (await modal).onDidDismiss().then(async (res) => 
     await this.db.add(res.data));
-    
   }
 
 }

@@ -35,6 +35,9 @@ export class ModalAddPlayerPage{
       alert("Name and Category can't be blank");
     }
   }
+  async closeCancel(){
+    await this.modalCtrl.dismiss();
+  }
 
   convertFile(file : File) : Observable<string> {
     const result = new ReplaySubject<string>(1);

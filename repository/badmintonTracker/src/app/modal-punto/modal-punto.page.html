@@ -4,19 +4,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="display: flex;">
+  <div style="height: 60%;">
+    <ion-button (click)="close('oppNonForcedError')">Opponent Non Forced Error</ion-button>
+    <ion-button (click)="close('smash')">Smash</ion-button>
+    <ion-button (click)="close('netPlay')">Net Play</ion-button>
+    <ion-button (click)="close('drop')">Drop</ion-button>
+    <ion-button (click)="close('feint')">Feint</ion-button>
+    <ion-button (click)="close('longCourt')">Long Court</ion-button>
+  </div>
   
-  <ion-button (click)="close('oppNonForcedError')">Opponent Non Forced Error</ion-button>
-  <ion-button (click)="close('smash')">Smash</ion-button>
-  <ion-button (click)="close('netPlay')">Net Play</ion-button>
-  <ion-button (click)="close('drop')">Drop</ion-button>
-  <ion-button (click)="close('feint')">Feint</ion-button>
-  <ion-button (click)="close('longCourt')">Long Court</ion-button>
-
+<div style="height: 20%;">
   <ion-fab vertical="bottom" horizontal="center">
     <ion-fab-button (click)="close('close')">
       <ion-icon name="close-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+</div>
+  
 
 </ion-content>

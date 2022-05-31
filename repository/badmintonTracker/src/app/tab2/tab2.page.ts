@@ -28,7 +28,11 @@ export class Tab2Page implements OnChanges{
       component: ModalAddPlayerPage
     });
     (await modal).present();
-    (await modal).onDidDismiss().then(async (res) => this.afd.list(getAuth().currentUser.uid).push(res.data));
+    (await modal).onDidDismiss().then(async (res) => {
+      if(res){
+        this.afd.list(getAuth().currentUser.uid).push(res.data);
+      }
+    });
   }
 
 }

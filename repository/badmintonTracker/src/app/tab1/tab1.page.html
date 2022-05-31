@@ -10,7 +10,7 @@
 
   <ion-card style=" height: 30%; margin-inline: 5%;">
 
-    <div style="height: 75%; display: flex; align-items: center; justify-content: center;">
+    <div style="height: 60%; display: flex; align-items: center; justify-content: center;">
       <div *ngIf="player1.photo; else defaultAvatar">
         <img [src]= player1.photo alt=""></div>
       <ng-template #defaultAvatar>
@@ -18,8 +18,8 @@
       <h1 style="margin-left: 10px;">{{player1.name}}</h1> 
     </div>
 
-    <div style="display: block; align-items: center; justify-content: center;">
-      <ion-button id="modal-trigger1" (click)="point(1)" color="primary" expand="block">Point</ion-button>
+    <div style="display: block; margin: 10px;">
+      <ion-button (click)="point(1)" color="primary" expand="block">Point</ion-button>
     </div>
 
   </ion-card>
@@ -38,7 +38,7 @@
 
   <ion-card style=" height: 30%; margin-inline: 5%;">
     
-    <div style="height: 75%; display: flex; align-items: center; justify-content: center;">
+    <div style="height: 60%; display: flex; align-items: center; justify-content: center;">
       <div *ngIf="player2.photo; else defaultAvatar">
         <img [src]= player2.photo alt=""></div>
       <ng-template #defaultAvatar>
@@ -46,8 +46,8 @@
       <h1 style="margin-left: 10px;">{{player2.name}}</h1> 
     </div>
 
-    <div style="display: block; align-items: center; justify-content: center;">
-      <ion-button id="modal-trigger2" (click)="point(2)" color="primary" expand="block">Point</ion-button>
+    <div style="display: block; margin: 10px;">
+      <ion-button (click)="point(2)" color="primary" expand="block">Point</ion-button>
     </div>
 
   </ion-card>

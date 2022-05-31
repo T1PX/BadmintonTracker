@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../shared/authentication-service";
 @Component({
@@ -15,8 +16,7 @@ export class SignUpPage implements OnInit {
   signUp(email, password){
     this.authService.RegisterUser(email.value, password.value)
     .then((res) => {
-      // Do something here
-      this.authService.SendVerificationMail()
+      this.authService.SendVerificationMail();
       this.router.navigate(['verify-email']);
     }).catch((error) => {
       window.alert(error.message)

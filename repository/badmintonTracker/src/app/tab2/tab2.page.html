@@ -15,7 +15,7 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-list *ngFor="let player of players; index as i">
+  <ion-list *ngFor="let player of players | async">
     <ion-item>
       <ion-avatar style="margin-right: 10px;">
         <div *ngIf="player.photo; else defaultAvatar">

@@ -5,15 +5,20 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    projectId: 'badminton-tracker-4700a',
-    appId: '1:1066973023416:web:a9c74ddfa83729841b784d',
-    databaseURL: 'https://badminton-tracker-4700a-default-rtdb.europe-west1.firebasedatabase.app',
-    storageBucket: 'badminton-tracker-4700a.appspot.com',
-    locationId: 'europe-west',
-    apiKey: 'AIzaSyDfjKgM3TC4s6kMvqfz0NgSplIH2f12ZcY',
-    authDomain: 'badminton-tracker-4700a.firebaseapp.com',
-    messagingSenderId: '1066973023416',
-    measurementId: 'G-GSKQRMPLL1',
+    apiKey: "AIzaSyAZc4cxVXGUCjxePDS0Kr24DQkjScWw_9c",
+
+    authDomain: "bdmtracker-c8283.firebaseapp.com",
+
+    projectId: "bdmtracker-c8283",
+
+    storageBucket: "bdmtracker-c8283.appspot.com",
+
+    messagingSenderId: "915922673750",
+
+    appId: "1:915922673750:web:5e3585ea73f78c76851bf7",
+
+    databaseURL:"https://bdmtracker-c8283-default-rtdb.europe-west1.firebasedatabase.app"
+
   }
 };
 

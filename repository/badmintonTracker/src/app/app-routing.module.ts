@@ -44,6 +44,10 @@ const routes: Routes = [
   {
     path: 'match-detail',
     loadChildren: () => import('./match-detail/match-detail.module').then( m => m.MatchDetailPageModule)
+  },
+  {
+    path: 'modal-select-players',
+    loadChildren: () => import('./modal-select-players/modal-select-players.module').then( m => m.ModalSelectPlayersPageModule)
   }
 
 

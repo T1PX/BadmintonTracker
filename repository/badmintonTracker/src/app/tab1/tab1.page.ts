@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Match } from '../Interfaces/match';
 import { InMatchPlayer, Player } from '../Interfaces/player';
 import { ModalController } from '@ionic/angular'; 
 import { ModalPuntoPage } from '../modal-punto/modal-punto.page';
 import { Stats } from '../Interfaces/stats';
+import { ModalSelectPlayersPage } from '../modal-select-players/modal-select-players.page';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
   
 
   constructor(private modalCtrl: ModalController) {}
@@ -45,14 +46,8 @@ export class Tab1Page {
   set3Score:string;
 
   ngOnInit(){
-    //MODAL SELECCION JUGADORES
-    this.player1.name = "player 1";
-    this.player2.name = "player 2";
-    this.player1.score=0;
-    this.player2.score=0;
-    this.player1.matches= new Array<Match>();
-    this.match.player=this.player1;
-    this.match.rival=this.player2.name;
+    this.player1.name = "";
+    this.player2.name = "";
   }
 
   point(pl){
@@ -159,6 +154,27 @@ export class Tab1Page {
         break;
       }
     }
+  }
+
+  selectPlayers(){
+    this.showModalSelectPlayers()
+  }
+
+  async showModalSelectPlayers(){
+    const modal = this.modalCtrl.create({
+      component: ModalSelectPlayersPage,
+      backdropDismiss: false
+    });
+    (await modal).present();
+    (await modal).onDidDismiss().then((res) => {
+      this.player1=res.data.myPlayer;
+      this.player2.name=res.data.myRival;
+      this.player1.score=0;
+      this.player2.score=0;
+      this.player1.matches= new Array<Match>();
+      this.match.player=this.player1;
+      this.match.rival=this.player2.name;
+    });
   }
 }
 

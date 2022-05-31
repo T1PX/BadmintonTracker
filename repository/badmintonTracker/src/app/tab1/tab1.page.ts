@@ -17,7 +17,8 @@ export class Tab1Page {
 
   async showmodal(pl){
     const modal = this.modalCtrl.create({
-      component: ModalPuntoPage
+      component: ModalPuntoPage,
+      backdropDismiss: false
     });
     (await modal).present();
     (await modal).onDidDismiss().then((res) =>

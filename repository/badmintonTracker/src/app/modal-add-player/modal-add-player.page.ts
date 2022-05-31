@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Player } from '../Interfaces/player';
-import { AuthenticationService } from '../shared/authentication-service';
 
 @Component({
   selector: 'app-modal-add-player',
@@ -15,7 +13,6 @@ export class ModalAddPlayerPage{
   constructor(private modalCtrl: ModalController) { }
 
   uploadPlayer:Player = {'name':'','category':''};
-  uid:string ='';
 
 
   addName(ev){
@@ -31,11 +28,6 @@ export class ModalAddPlayerPage{
   }
 
   async close(){
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-        this.uid = user.uid;
-        this.uploadPlayer.user=this.uid;
-    });
     if(this.uploadPlayer.name!='' && this.uploadPlayer.category!=''){
       await this.modalCtrl.dismiss(this.uploadPlayer);
     }

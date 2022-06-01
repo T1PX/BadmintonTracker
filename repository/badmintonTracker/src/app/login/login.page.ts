@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
+        localStorage.setItem('user', JSON.stringify(res.user));
         if(this.authService.isEmailVerified) {
           const auth = getAuth();
           onAuthStateChanged(auth, (user) => {

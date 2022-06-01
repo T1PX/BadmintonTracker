@@ -2,7 +2,8 @@ import { Player } from "./player";
 import { Stats } from "./stats";
 
 export interface Match{
-    player:Player;
+    player:string;
+    playerRef:string;
     rival:string;
     fecha:string;
     result:string;

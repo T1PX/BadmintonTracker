@@ -6,6 +6,7 @@ import { ModalAddPlayerPage } from '../modal-add-player/modal-add-player.page';
 import { LoginPage } from '../login/login.page';
 import { Observable } from 'rxjs';
 import { getAuth } from 'firebase/auth';
+import { Match } from '../Interfaces/match';
 
 @Component({
   selector: 'app-tab2',
@@ -30,7 +31,9 @@ export class Tab2Page implements OnChanges{
     (await modal).present();
     (await modal).onDidDismiss().then(async (res) => {
       if(res){
-        this.afd.list(getAuth().currentUser.uid).push(res.data);
+        const ref = this.afd.list(getAuth().currentUser.uid).push(res.data);
+        this.afd.list(getAuth().currentUser.uid).update(ref.key,{'ref':ref.key})
+        
       }
     });
   }

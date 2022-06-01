@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="player1.name!='' else startButton">
+<ion-content [fullscreen]="true" *ngIf="player1.name!=null else startButton">
 
   <ion-card style=" height: 30%; margin-inline: 5%;">
 

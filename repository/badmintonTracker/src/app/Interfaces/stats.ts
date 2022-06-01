@@ -5,9 +5,9 @@ export class Stats {
     public netPlay: number,
     public drop: number,
     public feint: number,
-    public longCourt: number,
-    public perStats?: PerStats
+    public longCourt: number
   ){}
+  perStats:PerStats;
   setPerStats(){
     let total = (this.drop+this.feint+this.longCourt+this.netPlay+this.oppNonForcedError+this.smash);
     this.perStats.perDrop = this.drop/total;

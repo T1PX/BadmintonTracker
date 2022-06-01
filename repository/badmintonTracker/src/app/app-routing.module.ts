@@ -48,6 +48,10 @@ const routes: Routes = [
   {
     path: 'modal-select-players',
     loadChildren: () => import('./modal-select-players/modal-select-players.module').then( m => m.ModalSelectPlayersPageModule)
+  },
+  {
+    path: 'modal-gameover',
+    loadChildren: () => import('./modal-gameover/modal-gameover.module').then( m => m.ModalGameoverPageModule)
   }
 
 

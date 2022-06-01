@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Observable, ReplaySubject } from 'rxjs';
+import { Match } from '../Interfaces/match';
 import { Player } from '../Interfaces/player';
 
 @Component({
@@ -12,7 +13,7 @@ export class ModalAddPlayerPage{
 
   constructor(private modalCtrl: ModalController) { }
 
-  uploadPlayer:Player = {'name':'','category':''};
+  uploadPlayer:Player = {'name':'','category':'','ref':'','matches':Array<Match>()};
 
 
   addName(ev){

@@ -196,7 +196,6 @@ export class Tab1Page implements OnInit{
       this.match.player=this.player1.name;
       this.match.playerRef=this.player1.ref;
       this.match.rival=this.player2.name;
-      console.log(this.player1);
     });
   }
 
@@ -214,4 +213,3 @@ export class Tab1Page implements OnInit{
     });
   }
 }
-

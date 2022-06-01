@@ -1,9 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detailPlayer</ion-title>
+    <ion-title>{{dataService.selectedPlayer.name}} / {{dataService.selectedPlayer.category}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <div *ngIf="dataService.selectedPlayer.photo; else defaultAvatar">
+      <img style="margin-left: 25%;" src= 'data:image/jpeg;base64,{{dataService.selectedPlayer.photo}}' class="clipped" width="{{deviceSize}}" height="{{deviceSize}}"></div>
+    <ng-template #defaultAvatar>
+      <img src= "../../assets/avatar.png" width="{{deviceSize}}" height="{{deviceSize}}"></ng-template>
+  </ion-card>
+  <ion-item><ion-label ><ion-text color="primary">{{dataService.selectedPlayer.name}} match record</ion-text></ion-label></ion-item>
+  <ion-list *ngFor="let match of dataService.selectedPlayer.matches">
+    <ion-item><ion-label>vs {{match.rival}}</ion-label></ion-item>
+  </ion-list>
 </ion-content>

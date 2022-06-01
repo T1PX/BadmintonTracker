@@ -7,6 +7,8 @@ import { LoginPage } from '../login/login.page';
 import { Observable } from 'rxjs';
 import { getAuth } from 'firebase/auth';
 import { Match } from '../Interfaces/match';
+import { Router } from '@angular/router';
+import { DataService } from '../shared/data-service';
 
 @Component({
   selector: 'app-tab2',
@@ -15,8 +17,9 @@ import { Match } from '../Interfaces/match';
 })
 export class Tab2Page implements OnChanges{
   players:Observable<any[]>;
+  selectedPlayer:Player;
 
-  constructor(private modalCtrl: ModalController, private afd:AngularFireDatabase) {
+  constructor(private modalCtrl: ModalController, private afd:AngularFireDatabase, private router: Router, private dataServide:DataService) {
     this.players = this.afd.list(getAuth().currentUser.uid).valueChanges();
   }
   
@@ -36,6 +39,11 @@ export class Tab2Page implements OnChanges{
         
       }
     });
+  }
+
+  goDetail(pl:Player){
+    this.dataServide.selectedPlayer=pl;
+    this.router.navigate(['/tabs/tabs/detail-player']);
   }
 
 }

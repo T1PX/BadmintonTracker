@@ -16,7 +16,7 @@
   </ion-fab>
 
   <ion-list *ngFor="let player of players | async">
-    <ion-item>
+    <ion-item (click)="goDetail(player)">
       <ion-avatar style="margin-right: 10px;">
         <div *ngIf="player.photo; else defaultAvatar">
           <ion-img src= 'data:image/jpeg;base64,{{player.photo}}' class="clipped" width="150" height="150"></ion-img></div>

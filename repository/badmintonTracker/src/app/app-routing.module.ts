@@ -29,14 +29,15 @@ const routes: Routes = [
   {
     path: 'modal-punto',
     loadChildren: () => import('./modal-punto/modal-punto.module').then( m => m.ModalPuntoPageModule)
-  },  {
+  },
+  {
     path: 'modal-add-player',
     loadChildren: () => import('./modal-add-player/modal-add-player.module').then( m => m.ModalAddPlayerPageModule)
   },
-  {
-    path: 'detail-player',
-    loadChildren: () => import('./detail-player/detail-player.module').then( m => m.DetailPlayerPageModule)
-  },
+  // {
+  //   path: 'detail-player',
+  //   loadChildren: () => import('./detail-player/detail-player.module').then( m => m.DetailPlayerPageModule)
+  // },
   {
     path: 'match-list',
     loadChildren: () => import('./match-list/match-list.module').then( m => m.MatchListPageModule)

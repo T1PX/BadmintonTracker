@@ -16,9 +16,8 @@ const routes: Routes = [
         loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
       },
       {
-        path: '',
-        redirectTo: 'tabs/tab2',
-        pathMatch: 'full'
+        path: 'detail-player',
+        loadChildren: () => import('../detail-player/detail-player.module').then(m => m.DetailPlayerPageModule)
       }
     ]
   },

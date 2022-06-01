@@ -12,9 +12,9 @@
 
     <div style="height: 60%; display: flex; align-items: center; justify-content: center;">
       <div *ngIf="player1.photo; else defaultAvatar">
-        <img [src]= player1.photo alt=""></div>
+        <img src= 'data:image/jpeg;base64,{{player1.photo}}' class="clipped" width="75px" height="75px"></div>
       <ng-template #defaultAvatar>
-        <img src= "../../assets/avatar.png" alt=""></ng-template>
+        <img src= "../../assets/avatar.png" alt="" width="75px" height="75px"></ng-template>
       <h1 style="margin-left: 10px;">{{player1.name}}</h1> 
     </div>
 
@@ -42,7 +42,7 @@
       <div *ngIf="player2.photo; else defaultAvatar">
         <img [src]= player2.photo alt=""></div>
       <ng-template #defaultAvatar>
-        <img src= "../../assets/avatar.png" alt=""></ng-template>
+        <img src= "../../assets/avatar.png" width="75px" height="75px"></ng-template>
       <h1 style="margin-left: 10px;">{{player2.name}}</h1> 
     </div>
 

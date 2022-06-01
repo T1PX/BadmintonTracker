@@ -19,9 +19,9 @@
     <ion-item>
       <ion-avatar style="margin-right: 10px;">
         <div *ngIf="player.photo; else defaultAvatar">
-          <ion-img src= 'data:image/jpeg;base64,{{player.photo}}'></ion-img></div>
+          <ion-img src= 'data:image/jpeg;base64,{{player.photo}}' class="clipped" width="150" height="150"></ion-img></div>
         <ng-template #defaultAvatar>
-          <img src= "../../assets/avatar.png" alt=""></ng-template>
+          <img src= "../../assets/avatar.png" width="150" height="150"></ng-template>
       </ion-avatar>
       <ion-label>
         <h2>{{player.name}}</h2>

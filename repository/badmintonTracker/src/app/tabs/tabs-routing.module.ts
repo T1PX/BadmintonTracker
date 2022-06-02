@@ -18,6 +18,10 @@ const routes: Routes = [
       {
         path: 'detail-player',
         loadChildren: () => import('../detail-player/detail-player.module').then(m => m.DetailPlayerPageModule)
+      },
+      {
+        path: 'match-detail',
+        loadChildren: () => import('../match-detail/match-detail.module').then(m => m.MatchDetailPageModule)
       }
     ]
   },

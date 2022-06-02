@@ -13,6 +13,6 @@
   </ion-card>
   <ion-item><ion-label ><ion-text color="primary">{{dataService.selectedPlayer.name}} match record</ion-text></ion-label></ion-item>
   <ion-list *ngFor="let match of dataService.selectedPlayer.matches">
-    <ion-item><ion-label>vs {{match.rival}}</ion-label></ion-item>
+    <ion-item (click)="goMatchDetail(match)"><ion-label>vs {{match.rival}}</ion-label></ion-item>
   </ion-list>
 </ion-content>

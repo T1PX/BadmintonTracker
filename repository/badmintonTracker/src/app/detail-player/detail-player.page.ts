@@ -18,6 +18,5 @@ export class DetailPlayerPage implements OnInit  {
   goMatchDetail(match){
     this.dataService.selectedMatch=match;
       this.router.navigate(['/tabs/tabs/match-detail']);
-    
   }
 }

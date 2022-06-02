@@ -36,8 +36,8 @@ export class Tab1Page implements OnInit{
   }
 
   reset(){
-    this.player1 = {'score':null,'sets':null,'name':null,'category':null,'ref':null,'matches':null};
-    this.player2 = {'score':null,'sets':null,'name':null,'category':null,'ref':null,'matches':null};
+    this.player1 = {'score':null,'sets':null,'name':null,'category':null,'ref':null,'matches':null,'totalStats':null,'totalStatsAgainst':null};
+    this.player2 = {'score':null,'sets':null,'name':null,'category':null,'ref':null,'matches':null,'totalStats':null,'totalStatsAgainst':null};
     this.stats = new Stats(0,0,0,0,0,0);
     this.statsAgainst = new Stats(0,0,0,0,0,0);
     this.match = {'player':null,'playerRef':null,'fecha':null,'result':null,'rival':null,'stats':this.stats,'statsAgainst':this.statsAgainst,'winner':null};
@@ -111,6 +111,21 @@ export class Tab1Page implements OnInit{
     else {this.match.result= this.set1Score+' '+this.set2Score}
     this.match.fecha= this.date;
     this.player1.matches.push(this.match);
+    this.player1.totalStats.feint=this.player1.totalStats.feint+this.match.stats.feint;
+    this.player1.totalStats.longCourt=this.player1.totalStats.longCourt+this.match.stats.longCourt;
+    this.player1.totalStats.netPlay=this.player1.totalStats.netPlay+this.match.stats.netPlay;
+    this.player1.totalStats.oppNonForcedError=this.player1.totalStats.oppNonForcedError+this.match.stats.oppNonForcedError;
+    this.player1.totalStats.smash=this.player1.totalStats.smash+this.match.stats.smash;
+    this.player1.totalStats.drop=this.player1.totalStats.drop+this.match.stats.drop;
+
+    this.player1.totalStatsAgainst.feint=this.player1.totalStatsAgainst.feint+this.match.statsAgainst.feint;
+    this.player1.totalStatsAgainst.longCourt=this.player1.totalStatsAgainst.longCourt+this.match.statsAgainst.longCourt;
+    this.player1.totalStatsAgainst.netPlay=this.player1.totalStatsAgainst.netPlay+this.match.statsAgainst.netPlay;
+    this.player1.totalStatsAgainst.oppNonForcedError=this.player1.totalStatsAgainst.oppNonForcedError+this.match.statsAgainst.oppNonForcedError;
+    this.player1.totalStatsAgainst.smash=this.player1.totalStatsAgainst.smash+this.match.statsAgainst.smash;
+    this.player1.totalStatsAgainst.drop=this.player1.totalStatsAgainst.drop+this.match.statsAgainst.drop;
+    this.afd.list(getAuth().currentUser.uid).update(this.player1.ref,{'totalStats':this.player1.totalStats});
+    this.afd.list(getAuth().currentUser.uid).update(this.player1.ref,{'totalStatsAgainst':this.player1.totalStatsAgainst});
     this.afd.list(getAuth().currentUser.uid).update(this.player1.ref,{'matches':this.player1.matches});
     this.showModalGameOver(this.match);
   }

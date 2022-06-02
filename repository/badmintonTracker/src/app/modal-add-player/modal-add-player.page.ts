@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Match } from '../Interfaces/match';
 import { Player } from '../Interfaces/player';
+import { Stats } from '../Interfaces/stats';
 
 @Component({
   selector: 'app-modal-add-player',
@@ -13,7 +14,10 @@ export class ModalAddPlayerPage{
 
   constructor(private modalCtrl: ModalController) { }
 
-  uploadPlayer:Player = {'name':'','category':'','ref':'','matches':Array<Match>()};
+  stats = new Stats(0,0,0,0,0,0);
+  statsAgainst = new Stats(0,0,0,0,0,0);
+
+  uploadPlayer:Player = {'name':'','category':'','ref':'','matches':Array<Match>(), 'totalStats':this.stats,'totalStatsAgainst':this.statsAgainst};
 
 
   addName(ev){

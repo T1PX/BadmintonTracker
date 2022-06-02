@@ -5,8 +5,8 @@ export interface Player {
     category:string;
     ref:string;
     photo?: string;
-    totalStats?: Stats;
-    totalStatsAgainst?: Stats;
+    totalStats: Stats;
+    totalStatsAgainst: Stats;
     matches: Array<Match>;
     score?:number;
     sets?:number;

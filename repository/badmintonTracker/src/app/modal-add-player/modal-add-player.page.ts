@@ -37,7 +37,7 @@ export class ModalAddPlayerPage{
     }
   }
   async closeCancel(){
-    await this.modalCtrl.dismiss();
+    await this.modalCtrl.dismiss('cancel');
   }
 
   convertFile(file : File) : Observable<string> {

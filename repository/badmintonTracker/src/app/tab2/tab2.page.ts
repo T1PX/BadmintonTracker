@@ -33,7 +33,7 @@ export class Tab2Page implements OnChanges{
     });
     (await modal).present();
     (await modal).onDidDismiss().then(async (res) => {
-      if(res){
+      if(res.data!='cancel'){
         const ref = this.afd.list(getAuth().currentUser.uid).push(res.data);
         this.afd.list(getAuth().currentUser.uid).update(ref.key,{'ref':ref.key})
         

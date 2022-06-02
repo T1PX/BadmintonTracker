@@ -41,7 +41,11 @@ const routes: Routes = [
   {
     path: 'modal-gameover',
     loadChildren: () => import('./modal-gameover/modal-gameover.module').then( m => m.ModalGameoverPageModule)
+  },  {
+    path: 'modal-edit-player',
+    loadChildren: () => import('./modal-edit-player/modal-edit-player.module').then( m => m.ModalEditPlayerPageModule)
   }
+
 
 
 ];

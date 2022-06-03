@@ -12,6 +12,45 @@
     </ion-card-header>
     <h1>{{match.result}}</h1>
   </ion-card>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-text class="tTitle" color="primary">Points</ion-text></ion-col>
+        <ion-col><ion-text class="tTitle" color="primary">Made</ion-text></ion-col>
+        <ion-col><ion-text class="tTitle" color="primary">Recived</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row1">
+        <ion-col><ion-text>Opponent non forced error</ion-text></ion-col>
+        <ion-col><ion-text>{{match.stats.oppNonForcedError}} / {{match.stats.perStats.perOppNonForcedError}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{match.statsAgainst.oppNonForcedError}} / {{match.statsAgainst.perStats.perOppNonForcedError}}%</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row2">
+        <ion-col><ion-text>Smash</ion-text></ion-col>
+        <ion-col><ion-text>{{match.stats.smash}} / {{match.stats.perStats.perSmash}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{match.statsAgainst.smash}} / {{match.statsAgainst.perStats.perSmash}}%</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row1">
+        <ion-col><ion-text>Net play</ion-text></ion-col>
+        <ion-col><ion-text>{{match.stats.netPlay}} / {{match.stats.perStats.perNetPlay}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{match.statsAgainst.netPlay}} / {{match.statsAgainst.perStats.perNetPlay}}%</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row2">
+        <ion-col><ion-text>Drop</ion-text></ion-col>
+        <ion-col><ion-text>{{match.stats.drop}} / {{match.stats.perStats.perDrop}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{match.statsAgainst.drop}} / {{match.statsAgainst.perStats.perDrop}}%</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row1">
+        <ion-col><ion-text>Feint</ion-text></ion-col>
+        <ion-col><ion-text>{{match.stats.feint}} / {{match.stats.perStats.perFeint}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{match.statsAgainst.feint}} / {{match.statsAgainst.perStats.perFeint}}%</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row2">
+        <ion-col><ion-text>Long court</ion-text></ion-col>
+        <ion-col><ion-text>{{match.stats.longCourt}} / {{match.stats.perStats.perLongCourt}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{match.statsAgainst.longCourt}} / {{match.statsAgainst.perStats.perLongCourt}}%</ion-text></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="center">

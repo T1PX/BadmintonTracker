@@ -3,7 +3,46 @@
     <ion-title>{{dataService.selectedMatch.player}} vs {{dataService.selectedMatch.rival}}</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <ion-text>Winner: {{this.dataService.selectedMatch.winner}}</ion-text><br>
+  <ion-text>{{this.dataService.selectedMatch.result}}</ion-text>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-text class="tTitle" color="primary">Points</ion-text></ion-col>
+        <ion-col><ion-text class="tTitle" color="primary">Made</ion-text></ion-col>
+        <ion-col><ion-text class="tTitle" color="primary">Recived</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row1">
+        <ion-col><ion-text>Opponent non forced error</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.stats.oppNonForcedError}} / {{dataService.selectedMatch.stats.perStats.perOppNonForcedError}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.statsAgainst.oppNonForcedError}} / {{dataService.selectedMatch.statsAgainst.perStats.perOppNonForcedError}}%</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row2">
+        <ion-col><ion-text>Smash</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.stats.smash}} / {{dataService.selectedMatch.stats.perStats.perSmash}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.statsAgainst.smash}} / {{dataService.selectedMatch.statsAgainst.perStats.perSmash}}%</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row1">
+        <ion-col><ion-text>Net play</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.stats.netPlay}} / {{dataService.selectedMatch.stats.perStats.perNetPlay}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.statsAgainst.netPlay}} / {{dataService.selectedMatch.statsAgainst.perStats.perNetPlay}}%</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row2">
+        <ion-col><ion-text>Drop</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.stats.drop}} / {{dataService.selectedMatch.stats.perStats.perDrop}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.statsAgainst.drop}} / {{dataService.selectedMatch.statsAgainst.perStats.perDrop}}%</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row1">
+        <ion-col><ion-text>Feint</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.stats.feint}} / {{dataService.selectedMatch.stats.perStats.perFeint}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.statsAgainst.feint}} / {{dataService.selectedMatch.statsAgainst.perStats.perFeint}}%</ion-text></ion-col>
+      </ion-row>
+      <ion-row class="row2">
+        <ion-col><ion-text>Long court</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.stats.longCourt}} / {{dataService.selectedMatch.stats.perStats.perLongCourt}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedMatch.statsAgainst.longCourt}} / {{dataService.selectedMatch.statsAgainst.perStats.perLongCourt}}%</ion-text></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>

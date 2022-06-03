@@ -5,7 +5,7 @@ export interface Match{
     player:string;
     playerRef:string;
     rival:string;
-    fecha:string;
+    date:string;
     result:string;
     stats:Stats;
     statsAgainst:Stats;

@@ -9,6 +9,7 @@ import { ModalGameoverPage } from '../modal-gameover/modal-gameover.page';
 import { getAuth } from 'firebase/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { DataService } from '../shared/data-service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-tab1',
@@ -18,7 +19,7 @@ import { DataService } from '../shared/data-service';
 export class Tab1Page implements OnInit{
   
 
-  constructor(private modalCtrl: ModalController, private afd: AngularFireDatabase, private dataService: DataService) {}
+  constructor(private modalCtrl: ModalController, private afd: AngularFireDatabase, private dataService: DataService, private datePipe:DatePipe) {}
 
   
   
@@ -41,8 +42,9 @@ export class Tab1Page implements OnInit{
     this.statsAgainst = new Stats(0,0,0,0,0,0);
     this.player1 = {'score':null,'sets':null,'name':null,'category':null,'ref':null,'matches':null,'totalStats':null,'totalStatsAgainst':null};
     this.player2 = {'score':null,'sets':null,'name':null,'category':null,'ref':null,'matches':null,'totalStats':null,'totalStatsAgainst':null};
-    this.match = {'player':null,'playerRef':null,'fecha':null,'result':null,'rival':null,'stats':this.stats,'statsAgainst':this.statsAgainst,'winner':null};
-    this.date = new Date().toISOString();
+    this.match = {'player':null,'playerRef':null,'date':null,'result':null,'rival':null,'stats':this.stats,'statsAgainst':this.statsAgainst,'winner':null};
+    let date = new Date();
+    this.date=this.datePipe.transform(date,'short');
     this.set1Score='';
     this.set2Score='';
     this.set3Score='';
@@ -111,7 +113,7 @@ export class Tab1Page implements OnInit{
     this.match.winner=winner.name;
     if(this.set3Score){this.match.result= this.set1Score+' / '+this.set2Score+' / '+this.set3Score}
     else {this.match.result= this.set1Score+' / '+this.set2Score}
-    this.match.fecha= this.date;
+    this.match.date= this.date;
     this.match.stats = this.dataService.setPerStats(this.match.stats);
     this.match.statsAgainst = this.dataService.setPerStats(this.match.statsAgainst);
     this.player1.matches.push(this.match);

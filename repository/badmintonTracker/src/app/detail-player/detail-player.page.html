@@ -11,49 +11,53 @@
     <div *ngIf="dataService.selectedPlayer.photo; else defaultAvatar">
       <img style="margin-left: 25%;" src= 'data:image/jpeg;base64,{{dataService.selectedPlayer.photo}}' class="clipped" width="{{deviceSize}}" height="{{deviceSize}}"></div>
     <ng-template #defaultAvatar>
-      <img src= "../../assets/avatar.png" width="{{deviceSize}}" height="{{deviceSize}}"></ng-template>
+      <img style="margin-left: 25%;" src= "../../assets/avatar.png" width="{{deviceSize}}" height="{{deviceSize}}"></ng-template>
     <ion-grid *ngIf="dataService.selectedPlayer.totalStats else noStats">
       <ion-row>
-        <ion-col><ion-text class="tTitle" color="primary">Total Stats</ion-text></ion-col>
-        <ion-col><ion-text class="tTitle" color="primary">Points made</ion-text></ion-col>
-        <ion-col><ion-text class="tTitle" color="primary">Points recived</ion-text></ion-col>
+        <ion-col><ion-text class="tTitle" color="primary">Points</ion-text></ion-col>
+        <ion-col><ion-text class="tTitle" color="primary">Made</ion-text></ion-col>
+        <ion-col><ion-text class="tTitle" color="primary">Recived</ion-text></ion-col>
       </ion-row>
       <ion-row class="row1">
         <ion-col><ion-text>Opponent non forced error</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.oppNonForcedError}}</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.oppNonForcedError}}</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.oppNonForcedError}} / {{dataService.selectedPlayer.totalStats.perStats.perOppNonForcedError}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.oppNonForcedError}} / {{dataService.selectedPlayer.totalStatsAgainst.perStats.perOppNonForcedError}}%</ion-text></ion-col>
       </ion-row>
       <ion-row class="row2">
         <ion-col><ion-text>Smash</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.smash}}</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.smash}}</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.smash}} / {{dataService.selectedPlayer.totalStats.perStats.perSmash}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.smash}} / {{dataService.selectedPlayer.totalStatsAgainst.perStats.perSmash}}%</ion-text></ion-col>
       </ion-row>
       <ion-row class="row1">
         <ion-col><ion-text>Net play</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.netPlay}}</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.netPlay}}</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.netPlay}} / {{dataService.selectedPlayer.totalStats.perStats.perNetPlay}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.netPlay}} / {{dataService.selectedPlayer.totalStatsAgainst.perStats.perNetPlay}}%</ion-text></ion-col>
       </ion-row>
       <ion-row class="row2">
         <ion-col><ion-text>Drop</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.drop}}</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.drop}}</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.drop}} / {{dataService.selectedPlayer.totalStats.perStats.perDrop}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.drop}} / {{dataService.selectedPlayer.totalStatsAgainst.perStats.perDrop}}%</ion-text></ion-col>
       </ion-row>
       <ion-row class="row1">
         <ion-col><ion-text>Feint</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.feint}}</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.feint}}</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.feint}} / {{dataService.selectedPlayer.totalStats.perStats.perFeint}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.feint}} / {{dataService.selectedPlayer.totalStatsAgainst.perStats.perFeint}}%</ion-text></ion-col>
       </ion-row>
       <ion-row class="row2">
         <ion-col><ion-text>Long court</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.longCourt}}</ion-text></ion-col>
-        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.longCourt}}</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStats.longCourt}} / {{dataService.selectedPlayer.totalStats.perStats.perLongCourt}}%</ion-text></ion-col>
+        <ion-col><ion-text>{{dataService.selectedPlayer.totalStatsAgainst.longCourt}} / {{dataService.selectedPlayer.totalStatsAgainst.perStats.perLongCourt}}%</ion-text></ion-col>
       </ion-row>
     </ion-grid>
     <ng-template #noStats><h1>No stats recorded</h1></ng-template>
   </ion-card>
 
-  <ion-item><ion-label ><ion-text color="primary">{{dataService.selectedPlayer.name}} match record</ion-text></ion-label></ion-item>
-  <ion-list *ngFor="let match of dataService.selectedPlayer.matches">
-    <ion-item (click)="goMatchDetail(match)"><ion-label>vs {{match.rival}}</ion-label></ion-item>
-  </ion-list>
+  <ion-item><ion-label><ion-text color="primary">{{dataService.selectedPlayer.name}} match record</ion-text></ion-label></ion-item>
+  <div *ngIf="dataService.selectedPlayer.matches else noMatches;">
+    <ion-list *ngFor="let match of dataService.selectedPlayer.matches">
+      <ion-item (click)="goMatchDetail(match)"><ion-label>vs {{match.rival}}</ion-label></ion-item>
+    </ion-list>
+  </div>
+
+  <ng-template #noMatches><h1>No matches recorded</h1></ng-template>
 </ion-content>

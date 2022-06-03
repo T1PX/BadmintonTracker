@@ -9,6 +9,7 @@ import { getAuth } from 'firebase/auth';
 import { Match } from '../Interfaces/match';
 import { Router } from '@angular/router';
 import { DataService } from '../shared/data-service';
+import { Stats } from '../Interfaces/stats';
 
 @Component({
   selector: 'app-tab2',
@@ -19,7 +20,7 @@ export class Tab2Page implements OnChanges{
   players:Observable<any[]>;
   selectedPlayer:Player;
 
-  constructor(private modalCtrl: ModalController, private afd:AngularFireDatabase, private router: Router, private dataServide:DataService) {
+  constructor(private modalCtrl: ModalController, private afd:AngularFireDatabase, private router: Router, private dataService:DataService) {
     this.players = this.afd.list(getAuth().currentUser.uid).valueChanges();
   }
   
@@ -42,7 +43,9 @@ export class Tab2Page implements OnChanges{
   }
 
   goDetail(pl:Player){
-    this.dataServide.selectedPlayer=pl;
+    this.dataService.selectedPlayer=pl;
+    this.dataService.selectedPlayer.totalStats = this.dataService.setPerStats(this.dataService.selectedPlayer.totalStats);
+    this.dataService.selectedPlayer.totalStatsAgainst = this.dataService.setPerStats(this.dataService.selectedPlayer.totalStatsAgainst);
     this.router.navigate(['/tabs/tabs/detail-player']);
   }
 

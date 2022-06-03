@@ -8,6 +8,7 @@ import { ModalSelectPlayersPage } from '../modal-select-players/modal-select-pla
 import { ModalGameoverPage } from '../modal-gameover/modal-gameover.page';
 import { getAuth } from 'firebase/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { DataService } from '../shared/data-service';
 
 @Component({
   selector: 'app-tab1',
@@ -17,7 +18,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 export class Tab1Page implements OnInit{
   
 
-  constructor(private modalCtrl: ModalController, private afd: AngularFireDatabase) {}
+  constructor(private modalCtrl: ModalController, private afd: AngularFireDatabase, private dataService: DataService) {}
 
   
   
@@ -36,10 +37,10 @@ export class Tab1Page implements OnInit{
   }
 
   reset(){
-    this.player1 = {'score':null,'sets':null,'name':null,'category':null,'ref':null,'matches':null,'totalStats':null,'totalStatsAgainst':null};
-    this.player2 = {'score':null,'sets':null,'name':null,'category':null,'ref':null,'matches':null,'totalStats':null,'totalStatsAgainst':null};
     this.stats = new Stats(0,0,0,0,0,0);
     this.statsAgainst = new Stats(0,0,0,0,0,0);
+    this.player1 = {'score':null,'sets':null,'name':null,'category':null,'ref':null,'matches':null,'totalStats':null,'totalStatsAgainst':null};
+    this.player2 = {'score':null,'sets':null,'name':null,'category':null,'ref':null,'matches':null,'totalStats':null,'totalStatsAgainst':null};
     this.match = {'player':null,'playerRef':null,'fecha':null,'result':null,'rival':null,'stats':this.stats,'statsAgainst':this.statsAgainst,'winner':null};
     this.date = new Date().toISOString();
     this.set1Score='';
@@ -106,10 +107,13 @@ export class Tab1Page implements OnInit{
   }
 
   gameOver(winner){
+    console.log('gameover');
     this.match.winner=winner.name;
-    if(this.set3Score){this.match.result= this.set1Score+' '+this.set2Score+' '+this.set3Score}
-    else {this.match.result= this.set1Score+' '+this.set2Score}
+    if(this.set3Score){this.match.result= this.set1Score+' / '+this.set2Score+' / '+this.set3Score}
+    else {this.match.result= this.set1Score+' / '+this.set2Score}
     this.match.fecha= this.date;
+    this.match.stats = this.dataService.setPerStats(this.match.stats);
+    this.match.statsAgainst = this.dataService.setPerStats(this.match.statsAgainst);
     this.player1.matches.push(this.match);
     this.player1.totalStats.feint=this.player1.totalStats.feint+this.match.stats.feint;
     this.player1.totalStats.longCourt=this.player1.totalStats.longCourt+this.match.stats.longCourt;
@@ -124,9 +128,18 @@ export class Tab1Page implements OnInit{
     this.player1.totalStatsAgainst.oppNonForcedError=this.player1.totalStatsAgainst.oppNonForcedError+this.match.statsAgainst.oppNonForcedError;
     this.player1.totalStatsAgainst.smash=this.player1.totalStatsAgainst.smash+this.match.statsAgainst.smash;
     this.player1.totalStatsAgainst.drop=this.player1.totalStatsAgainst.drop+this.match.statsAgainst.drop;
+
+    console.log('playerstatsset');
+
+    this.player1.totalStats = this.dataService.setPerStats(this.player1.totalStats);
+    this.player1.totalStatsAgainst = this.dataService.setPerStats(this.player1.totalStatsAgainst);
+
+    console.log('playerperstatsset');
     this.afd.list(getAuth().currentUser.uid).update(this.player1.ref,{'totalStats':this.player1.totalStats});
     this.afd.list(getAuth().currentUser.uid).update(this.player1.ref,{'totalStatsAgainst':this.player1.totalStatsAgainst});
+    console.log('playerupdated');
     this.afd.list(getAuth().currentUser.uid).update(this.player1.ref,{'matches':this.player1.matches});
+    console.log('matchupdated');
     this.showModalGameOver(this.match);
   }
 
@@ -203,6 +216,10 @@ export class Tab1Page implements OnInit{
         res.data.myPlayer.matches = Array<Match>();
       }
       this.player1=res.data.myPlayer;
+      if(!this.player1.totalStats){
+        this.player1.totalStats = new Stats(0,0,0,0,0,0);
+        this.player1.totalStatsAgainst = new Stats(0,0,0,0,0,0);
+      }
       this.player2.name=res.data.myRival;
       this.player1.score=0;
       this.player2.score=0;
@@ -215,6 +232,7 @@ export class Tab1Page implements OnInit{
   }
 
   async showModalGameOver(match){
+    console.log('showmodalgameover');
     const modal = this.modalCtrl.create({
       component: ModalGameoverPage,
       backdropDismiss: false,

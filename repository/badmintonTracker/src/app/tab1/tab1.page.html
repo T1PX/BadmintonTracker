@@ -10,12 +10,18 @@
 
   <ion-card style=" height: 30%; margin-inline: 5%;">
 
-    <div style="height: 60%; display: flex; align-items: center; justify-content: center;">
-      <div *ngIf="player1.photo; else defaultAvatar">
-        <img src= 'data:image/jpeg;base64,{{player1.photo}}' class="clipped" width="75px" height="75px"></div>
-      <ng-template #defaultAvatar>
-        <img src= "../../assets/avatar.png" alt="" width="75px" height="75px"></ng-template>
-      <h1 style="margin-left: 10px;">{{player1.name}}</h1> 
+    <div style="height: 60%;">
+      <ion-row>
+        <ion-col>
+          <div *ngIf="player1.photo; else defaultAvatar">
+            <img src= 'data:image/jpeg;base64,{{player1.photo}}' width="100px" height="100px"></div>
+          <ng-template #defaultAvatar>
+            <img src= "../../assets/avatar.png" alt="" width="100px" height="100px"></ng-template>
+        </ion-col>
+        <ion-col>
+          <h1 style="margin-top: 35%;">{{player1.name}}</h1> 
+        </ion-col>
+      </ion-row>
     </div>
 
     <div style="display: block; margin: 10px;">
@@ -38,12 +44,18 @@
 
   <ion-card style=" height: 30%; margin-inline: 5%;">
     
-    <div style="height: 60%; display: flex; align-items: center; justify-content: center;">
-      <div *ngIf="player2.photo; else defaultAvatar">
-        <img [src]= player2.photo alt=""></div>
-      <ng-template #defaultAvatar>
-        <img src= "../../assets/avatar.png" width="75px" height="75px"></ng-template>
-      <h1 style="margin-left: 10px;">{{player2.name}}</h1> 
+    <div style="height: 60%;">
+      <ion-row>
+        <ion-col>
+          <div *ngIf="player2.photo; else defaultAvatar">
+            <img [src]= player2.photo alt="" width="100px" height="100px"></div>
+          <ng-template #defaultAvatar>
+            <img src= "../../assets/avatar.png" width="100px" height="100px"></ng-template>
+        </ion-col>
+        <ion-col>
+          <h1 style="margin-top: 35%;">{{player2.name}}</h1> 
+        </ion-col>
+      </ion-row>
     </div>
 
     <div style="display: block; margin: 10px;">

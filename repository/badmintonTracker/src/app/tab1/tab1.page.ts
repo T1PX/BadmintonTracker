@@ -6,7 +6,6 @@ import { ModalPuntoPage } from '../modal-punto/modal-punto.page';
 import { Stats } from '../Interfaces/stats';
 import { ModalSelectPlayersPage } from '../modal-select-players/modal-select-players.page';
 import { ModalGameoverPage } from '../modal-gameover/modal-gameover.page';
-import { getAuth } from 'firebase/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { DataService } from '../shared/data-service';
 import { DatePipe } from '@angular/common';
@@ -32,6 +31,7 @@ export class Tab1Page implements OnInit{
   set1Score:string;
   set2Score:string;
   set3Score:string;
+  userId=JSON.parse(localStorage.getItem('user')).uid;
 
   ngOnInit(){
     this.reset();
@@ -137,10 +137,10 @@ export class Tab1Page implements OnInit{
     this.player1.totalStatsAgainst = this.dataService.setPerStats(this.player1.totalStatsAgainst);
 
     console.log('playerperstatsset');
-    this.afd.list(getAuth().currentUser.uid).update(this.player1.ref,{'totalStats':this.player1.totalStats});
-    this.afd.list(getAuth().currentUser.uid).update(this.player1.ref,{'totalStatsAgainst':this.player1.totalStatsAgainst});
+    this.afd.list(this.userId).update(this.player1.ref,{'totalStats':this.player1.totalStats});
+    this.afd.list(this.userId).update(this.player1.ref,{'totalStatsAgainst':this.player1.totalStatsAgainst});
     console.log('playerupdated');
-    this.afd.list(getAuth().currentUser.uid).update(this.player1.ref,{'matches':this.player1.matches});
+    this.afd.list(this.userId).update(this.player1.ref,{'matches':this.player1.matches});
     console.log('matchupdated');
     this.showModalGameOver(this.match);
   }

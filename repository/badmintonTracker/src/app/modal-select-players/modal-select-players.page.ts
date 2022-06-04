@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { ModalController } from '@ionic/angular';
-import { getAuth } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { Player } from '../Interfaces/player';
 
@@ -16,7 +15,7 @@ export class ModalSelectPlayersPage {
   selectedPlayer:Player;
 
   constructor(private afd:AngularFireDatabase, private modalCtrl: ModalController) {
-    this.players = this.afd.list(getAuth().currentUser.uid).valueChanges();
+    this.players = this.afd.list(JSON.parse(localStorage.getItem('user')).uid).valueChanges();
   }
 
   async close(){

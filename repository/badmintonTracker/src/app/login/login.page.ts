@@ -13,7 +13,8 @@ export class LoginPage implements OnInit {
     public authService: AuthenticationService,
     public router: Router
   ) {}
-  ngOnInit() {}
+  ngOnInit() {
+  }
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {

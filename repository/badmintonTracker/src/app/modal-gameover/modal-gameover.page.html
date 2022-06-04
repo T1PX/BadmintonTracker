@@ -7,13 +7,24 @@
 <ion-content>
   <ion-card style="display: flex; align-items: center; justify-content: center;">
     
+    
+  <div style="display: flex; justify-content: center;">
     <h1 color="primary">{{match.player}} vs {{match.rival}}</h1>
-    <h2>{{match.date}}</h2>
+  </div>
+  <div style="display: flex; justify-content: center;">
     <h1>{{match.result}}</h1>
-    <h2>Winner: {{match.winner}}</h2>
+  </div>
+  <div style="display: flex; justify-content: center;">
+    <h1>Winner: {{match.winner}}</h1>
+  </div>
   </ion-card>
   <ion-card>
     <ion-grid>
+      <ion-row>
+        <ion-col><ion-text class="tTitle" color="primary">Points</ion-text></ion-col>
+        <ion-col><ion-text class="tTitle" color="primary">Made</ion-text></ion-col>
+        <ion-col><ion-text class="tTitle" color="primary">Recived</ion-text></ion-col>
+      </ion-row>
       <ion-row class="row1">
         <ion-col><ion-text >Opponent non forced error</ion-text></ion-col>
         <ion-col><ion-text [ngStyle]="{'color' : (match.stats.perStats.perOppNonForcedError>(100/6)) ? 'white' : ''}">{{match.stats.oppNonForcedError}} / {{match.stats.perStats.perOppNonForcedError}}%</ion-text></ion-col>

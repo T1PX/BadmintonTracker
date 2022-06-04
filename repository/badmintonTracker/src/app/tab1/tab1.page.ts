@@ -63,7 +63,7 @@ export class Tab1Page implements OnInit{
     (await modal).onDidDismiss().then((res) =>
      {
       if(res.data!='close' && pl==1){
-        this.player1.score=(this.player1.score+21);
+        this.player1.score=(this.player1.score+1);
         this.addStat(this.match,res.data);
       }
       else if(res.data!='close' && pl==2){

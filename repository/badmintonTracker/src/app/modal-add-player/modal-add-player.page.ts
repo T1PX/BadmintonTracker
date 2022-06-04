@@ -14,8 +14,8 @@ export class ModalAddPlayerPage{
 
   constructor(private modalCtrl: ModalController) { }
 
-  stats = new Stats(0,0,0,0,0,0);
-  statsAgainst = new Stats(0,0,0,0,0,0);
+  stats = new Stats(0,0,0,0,0,0,null);
+  statsAgainst = new Stats(0,0,0,0,0,0,null);
 
   uploadPlayer:Player = {'name':'','category':'','ref':'','matches':Array<Match>(), 'totalStats':this.stats,'totalStatsAgainst':this.statsAgainst};
 

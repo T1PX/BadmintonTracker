@@ -70,8 +70,8 @@ export class Tab1Page implements OnInit{
         this.player2.score=(this.player2.score+1);
         this.addStatAgainst(this.match,res.data);
       }
-      if((this.player1.score>=21 && (this.player1.score-this.player2.score)>2)
-    ||  (this.player2.score>=21 && (this.player2.score-this.player1.score)>2)
+      if((this.player1.score>=21 && (this.player1.score-this.player2.score)>=2)
+    ||  (this.player2.score>=21 && (this.player2.score-this.player1.score)>=2)
     || (this.player1.score>29 || this.player2.score>29))
     {
       this.setOver()

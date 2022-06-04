@@ -4,8 +4,13 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-text>Winner: {{this.dataService.selectedMatch.winner}}</ion-text><br>
-  <ion-text>{{this.dataService.selectedMatch.result}}</ion-text>
+  <div style="display: flex; justify-content: center;">
+    <h1>{{this.dataService.selectedMatch.result}}</h1>
+  </div>
+  <div style="display: flex; justify-content: center;">
+    <h1>Winner: {{this.dataService.selectedMatch.winner}}</h1>
+  </div>
+  
   <ion-card>
     <ion-grid>
       <ion-row>

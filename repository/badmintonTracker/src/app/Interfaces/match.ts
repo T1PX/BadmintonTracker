@@ -1,4 +1,3 @@
-import { Player } from "./player";
 import { Stats } from "./stats";
 
 export interface Match{

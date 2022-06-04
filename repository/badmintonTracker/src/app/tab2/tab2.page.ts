@@ -3,13 +3,9 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { ModalController } from '@ionic/angular';
 import { Player } from '../Interfaces/player';
 import { ModalAddPlayerPage } from '../modal-add-player/modal-add-player.page';
-import { LoginPage } from '../login/login.page';
 import { Observable } from 'rxjs';
-import { getAuth } from 'firebase/auth';
-import { Match } from '../Interfaces/match';
 import { Router } from '@angular/router';
 import { DataService } from '../shared/data-service';
-import { Stats } from '../Interfaces/stats';
 
 @Component({
   selector: 'app-tab2',
@@ -21,8 +17,10 @@ export class Tab2Page implements OnChanges{
   selectedPlayer:Player;
 
   constructor(private modalCtrl: ModalController, private afd:AngularFireDatabase, private router: Router, private dataService:DataService) {
-    this.players = this.afd.list(getAuth().currentUser.uid).valueChanges();
+    this.players = this.afd.list(JSON.parse(localStorage.getItem('user')).uid).valueChanges();
   }
+
+  userId=JSON.parse(localStorage.getItem('user')).uid;
   
   ngOnChanges(){
   }
@@ -35,13 +33,8 @@ export class Tab2Page implements OnChanges{
     (await modal).present();
     (await modal).onDidDismiss().then(async (res) => {
       if(res.data!='cancel'){
-        console.log('push');
-        console.log(getAuth().currentUser.uid);
-        console.log(res.data);
-        const ref = this.afd.list(getAuth().currentUser.uid).push(res.data);
-        console.log(ref);
-        this.afd.list(getAuth().currentUser.uid).update(ref.key,{'ref':ref.key})
-        console.log('afterPush');
+        const ref = this.afd.list(this.userId).push(res.data);
+        this.afd.list(this.userId).update(ref.key,{'ref':ref.key})
       }
     });
   }

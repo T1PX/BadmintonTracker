@@ -11,7 +11,3 @@ export interface Player {
     score?:number;
     sets?:number;
 }
-// export interface InMatchPlayer extends Player{
-//     score:number;
-//     sets:number;
-// }

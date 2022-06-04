@@ -11,7 +11,7 @@
     <div *ngIf="dataService.selectedPlayer.photo; else defaultAvatar">
       <img style="align-self: center;" src= 'data:image/jpeg;base64,{{dataService.selectedPlayer.photo}}'></div>
     <ng-template #defaultAvatar>
-      <img style="margin-left: 25%;" src= "../../assets/avatar.png" width="{{deviceSize}}" height="{{deviceSize}}"></ng-template>
+      <img style="align-self: center;" src= "../../assets/avatar.png"></ng-template>
     <ion-grid *ngIf="dataService.selectedPlayer.totalStats else noStats">
       <ion-row>
         <ion-col><ion-text class="tTitle" color="primary">Points</ion-text></ion-col>

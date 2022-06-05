@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { AuthenticationService } from "../shared/authentication-service";
 @Component({
   selector: 'app-verify-email',
@@ -7,8 +8,21 @@ import { AuthenticationService } from "../shared/authentication-service";
 })
 export class VerifyEmailPage implements OnInit {
   constructor(
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    private alertController: AlertController
   ) { }
-  ngOnInit() {
+  async ngOnInit() {
+    const alert = await this.alertController.create({
+      header: "Can't find it?",
+      message: 'Be aware that the verification email may be on your spam',
+      buttons: [
+        {
+          text: 'Got it',
+          id: 'cancel-button'
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

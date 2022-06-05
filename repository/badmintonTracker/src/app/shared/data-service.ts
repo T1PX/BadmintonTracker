@@ -32,6 +32,5 @@ export class DataService {
           stats.perStats.perSmash = 0;
         }
         return stats;
-        
       }   
 }

@@ -15,9 +15,11 @@
       <ion-input name="category" (change)="addCategory($event)"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Photo</ion-label>
-      <ion-input name="photo" type="file" (change)="addPhoto($event)"></ion-input>
+      <ion-button (click)="selectPhoto()" >Select/Take photo</ion-button>
     </ion-item>
+    <div style="display: flex; justify-content: center;">
+      <img src="data:image/jpeg;base64,{{uploadPlayer.photo}}" width="80%">
+    </div> 
   </form>
 
 

@@ -4,6 +4,8 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { Match } from '../Interfaces/match';
 import { Player } from '../Interfaces/player';
 import { Stats } from '../Interfaces/stats';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { popoverController } from '@ionic/core';
 
 @Component({
   selector: 'app-modal-add-player',
@@ -23,13 +25,19 @@ export class ModalAddPlayerPage{
   addName(ev){
     this.uploadPlayer.name=ev.target.value;
   }
+  
   addCategory(ev){
     this.uploadPlayer.category=ev.target.value;
   }
-  addPhoto(ev){
-    this.convertFile(ev.target.files[0]).subscribe(base64 => {
-      this.uploadPlayer.photo = base64;
-    });
+
+  async selectPhoto(){
+      await Camera.getPhoto({
+        quality: 100,
+        allowEditing: true,
+        presentationStyle: 'popover',
+        source: CameraSource.Prompt,
+        resultType: CameraResultType.Base64
+      }).then(res=>{this.uploadPlayer.photo=res.base64String});
   }
 
   async close(){

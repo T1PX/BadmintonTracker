@@ -63,7 +63,7 @@ export class Tab1Page implements OnInit{
     (await modal).onDidDismiss().then((res) =>
      {
       if(res.data!='close' && pl==1){
-        this.player1.score=(this.player1.score+1);
+        this.player1.score=(this.player1.score+21);
         this.addStat(this.match,res.data);
       }
       else if(res.data!='close' && pl==2){
@@ -109,7 +109,6 @@ export class Tab1Page implements OnInit{
   }
 
   gameOver(winner){
-    console.log('gameover');
     this.match.winner=winner.name;
     if(this.set3Score){this.match.result= this.set1Score+' / '+this.set2Score+' / '+this.set3Score}
     else {this.match.result= this.set1Score+' / '+this.set2Score}
@@ -131,17 +130,17 @@ export class Tab1Page implements OnInit{
     this.player1.totalStatsAgainst.smash=this.player1.totalStatsAgainst.smash+this.match.statsAgainst.smash;
     this.player1.totalStatsAgainst.drop=this.player1.totalStatsAgainst.drop+this.match.statsAgainst.drop;
 
-    console.log('playerstatsset');
+
 
     this.player1.totalStats = this.dataService.setPerStats(this.player1.totalStats);
     this.player1.totalStatsAgainst = this.dataService.setPerStats(this.player1.totalStatsAgainst);
 
-    console.log('playerperstatsset');
+
     this.afd.list(this.userId).update(this.player1.ref,{'totalStats':this.player1.totalStats});
     this.afd.list(this.userId).update(this.player1.ref,{'totalStatsAgainst':this.player1.totalStatsAgainst});
-    console.log('playerupdated');
+
     this.afd.list(this.userId).update(this.player1.ref,{'matches':this.player1.matches});
-    console.log('matchupdated');
+
     this.showModalGameOver(this.match);
   }
 
